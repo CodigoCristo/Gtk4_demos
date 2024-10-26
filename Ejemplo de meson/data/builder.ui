@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <object class="GtkWindow" id="window">
+    <property name="title">GTK Application</property>
+    <property name="default-width">300</property>
+    <property name="default-height">200</property>
+    <child>
+      <object class="GtkBox" id="box">
+        <property name="orientation">GTK_ORIENTATION_VERTICAL</property>
+        <child>
+          <object class="GtkButton" id="button1">
+            <property name="label">Click Me</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkButton" id="quit">
+            <property name="label">Quit</property>
+          </object>
+        </child>
+      </object>
+    </child>
+  </object>
+</interface>
+

@@ -1,0 +1,5 @@
+<gresources>
+  <gresource prefix="/com/example/myapp/">
+    <file alias="builder.ui" compressed="true" preprocess="xml-stripblanks">data/builder.ui</file>
+  </gresource>
+</gresources>
