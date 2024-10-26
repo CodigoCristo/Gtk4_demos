@@ -2,11 +2,13 @@
 <interface>
   <object class="GtkWindow" id="window">
     <property name="title">GTK Application</property>
-    <property name="default-width">300</property>
+    <property name="default-width">200</property>
     <property name="default-height">200</property>
     <child>
       <object class="GtkBox" id="box">
         <property name="orientation">GTK_ORIENTATION_VERTICAL</property>
+        <property name="halign">GTK_ALIGN_CENTER</property>
+        <property name="valign">GTK_ALIGN_CENTER</property>
         <child>
           <object class="GtkButton" id="button1">
             <property name="label">Click Me</property>

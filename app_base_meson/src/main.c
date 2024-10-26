@@ -7,11 +7,6 @@ print_hello (GtkWidget *button, gpointer data)
     g_print("Hello World\n");
 }
 
-static void
-quit_cb (GtkWindow *window)
-{
-    gtk_window_close(window);
-}
 
 static void
 activate (GtkApplication *app, gpointer user_data)
@@ -33,7 +28,7 @@ activate (GtkApplication *app, gpointer user_data)
     g_signal_connect(button, "clicked", G_CALLBACK(print_hello), NULL);
 
     button = GTK_WIDGET (gtk_builder_get_object(builder, "quit"));
-    g_signal_connect_swapped(button, "clicked", G_CALLBACK(quit_cb), window);
+    g_signal_connect_swapped (button, "clicked", G_CALLBACK (gtk_window_destroy), window);
 
     gtk_window_present(GTK_WINDOW(window));
 
