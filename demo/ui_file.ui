@@ -1,0 +1,172 @@
+
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <requires lib="gtk" version="4.0"/>
+  <requires lib="adwaita" version="1.0"/>
+
+  <!-- Popover Menu -->
+  <object class="GtkPopover" id="hamburger_menu">
+    <style>
+      <class name="menu"/>
+    </style>
+    <child>
+      <object class="GtkBox">
+        <property name="orientation">vertical</property>
+        <property name="margin-top">6</property>
+        <property name="margin-bottom">6</property>
+        <property name="margin-start">6</property>
+        <property name="margin-end">6</property>
+        <child>
+          <object class="GtkModelButton" id="about_button">
+            <property name="text" translatable="yes">About Application</property>
+          </object>
+        </child>
+      </object>
+    </child>
+  </object>
+
+  <!-- Main Application Window -->
+  <object class="AdwApplicationWindow" id="AppWindow">
+    <property name="title">Application</property>
+    <property name="default-width">800</property>
+    <property name="default-height">600</property>
+    <property name="resizable">true</property>
+    
+    <!-- Main Vertical Box -->
+    <child>
+      <object class="GtkBox">
+        <property name="orientation">vertical</property>
+        <property name="vexpand">true</property>
+        <property name="hexpand">true</property>
+        
+        <!-- Header Bar at the top -->
+        <child>
+          <object class="AdwHeaderBar" id="header_bar">
+            <property name="title-widget">
+              <object class="GtkBox">
+                <child>
+                  <object class="AdwCarouselIndicatorDots" id="carousel_indicator">
+                    <property name="carousel">carousel</property>
+                    <property name="orientation">horizontal</property>
+                  </object>
+                </child>
+              </object>
+            </property>
+            <child type="start">
+              <object class="GtkButton" id="back_button">
+                <property name="label">Back</property>
+                <property name="tooltip-text">Go Back</property>
+              </object>
+            </child>
+            <child type="end">
+              <object class="GtkMenuButton" id="menu_button">
+                <property name="icon-name">open-menu-symbolic</property>
+                <property name="popover">hamburger_menu</property>
+              </object>
+            </child>
+            <style>
+              <class name="flat"/>
+            </style>
+          </object>
+        </child>
+
+        <!-- Carousel Content -->
+        <child>
+          <object class="AdwCarousel" id="carousel">
+            <property name="orientation">horizontal</property>
+            <property name="vexpand">true</property>
+            <property name="hexpand">true</property>
+            <property name="allow-mouse-drag">true</property>
+            <property name="allow-scroll-wheel">true</property>
+            <property name="allow-long-swipes">true</property>
+            <property name="interactive">true</property>
+
+            <!-- Page 1 -->
+            <child>
+              <object class="GtkBox" id="welcome_page">
+                <property name="orientation">vertical</property>
+                <property name="valign">center</property>
+                <property name="halign">center</property>
+                <property name="hexpand">true</property>
+                <property name="vexpand">true</property>
+                <child>
+                  <object class="GtkImage" id="logo_image">
+                    <property name="resource">/com/example/app/logo.png</property>
+                    <property name="pixel-size">200</property>
+                    <property name="margin-top">20</property>
+                    <property name="margin-bottom">20</property>
+                  </object>
+                </child>
+                <child>
+                  <object class="AdwStatusPage" id="welcome">
+                    <property name="title" translatable="yes">Welcome to the Application</property>
+                    <property name="description" translatable="yes">Start exploring our features by clicking "Next"</property>
+                    <property name="margin-bottom">20</property>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkButton" id="next_button">
+                    <property name="label" translatable="yes">Next</property>
+                    <style>
+                      <class name="suggested-action"/>
+                    </style>
+                    <property name="margin-bottom">20</property>
+                  </object>
+                </child>
+              </object>
+            </child>
+
+            <!-- Page 2 -->
+            <child>
+              <object class="GtkBox">
+                <property name="orientation">vertical</property>
+                <property name="valign">center</property>
+                <property name="halign">center</property>
+                <property name="hexpand">true</property>
+                <property name="vexpand">true</property>
+                <child>
+                  <object class="GtkLabel">
+                    <property name="label">Page 2 Content</property>
+                    <property name="margin-bottom">20</property>
+                  </object>
+                </child>
+              </object>
+            </child>
+
+            <!-- Page 3 -->
+            <child>
+              <object class="GtkBox">
+                <property name="orientation">vertical</property>
+                <property name="valign">center</property>
+                <property name="halign">center</property>
+                <property name="hexpand">true</property>
+                <property name="vexpand">true</property>
+                <child>
+                  <object class="GtkLabel">
+                    <property name="label">Page 3 Content</property>
+                    <property name="margin-bottom">20</property>
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
+  </object>
+
+  <!-- Application Menu -->
+  <menu id="primary_menu">
+    <section>
+      <item>
+        <attribute name="label">Keyboard Shortcuts</attribute>
+        <attribute name="action">win.show-help-overlay</attribute>
+      </item>
+      <item>
+        <attribute name="label">About Application</attribute>
+        <attribute name="action">app.about</attribute>
+      </item>
+    </section>
+  </menu>
+</interface>
+

@@ -1,0 +1,5 @@
+<gresources>
+  <gresource prefix="/com/example/app">
+    <file alias="builder.ui">ui_file.ui</file>
+  </gresource>
+</gresources>
