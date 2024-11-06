@@ -16,10 +16,7 @@ static void next_page_callback(GtkButton *button, gpointer user_data) {
 static void activate(GtkApplication *app, gpointer user_data) {
     // Cambia "ui_file.ui" a la ruta relativa o absoluta donde esté el archivo
     GtkBuilder *builder = gtk_builder_new_from_file("ui_file.ui");
-    if (!builder) {
-        g_error("No se pudo cargar el archivo UI.");
-        return;
-    }
+ 
 
     GtkWidget *window = GTK_WIDGET(gtk_builder_get_object(builder, "AppWindow"));
     gtk_window_set_application(GTK_WINDOW(window), app);

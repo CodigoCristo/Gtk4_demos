@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gresources>
+    <gresource prefix="/org/gtk/Example">
+        <!-- Interface -->
+        <file alias="window.ui" compressed="true">ui/window.ui</file>
+    </gresource>
+</gresources>
