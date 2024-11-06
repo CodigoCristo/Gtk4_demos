@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+      <object class="GtkBox" id="box">
+        <property name="orientation">1</property>
+        <property name="halign">3</property>
+        <child>
+          <object class="GtkFrame">
+            <property name="margin-bottom">12</property>
+            <child>
+              <object class="GtkScrolledWindow">
+                <property name="height-request">180</property>
+                <property name="width-request">600</property>
+                <child>
+                  <object class="GtkTextView" id="textview">
+                    <property name="monospace">true</property>
+                    <property name="bottom-margin">12</property>
+                    <property name="left-margin">12</property>
+                    <property name="right-margin">12</property>
+                    <property name="top-margin">12</property>
+                    <property name="editable">true</property>
+                    <property name="cursor-visible">true</property>
+                    <property name="wrap-mode">1</property>
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
+        </child>
+      <child>
+
+
+<object class="GtkBox" id="main_box">
+        <property name="orientation">1</property> <!-- Vertical -->
+        <property name="spacing">10</property> <!-- Espaciado entre filas -->
+        <property name="halign">GTK_ALIGN_CENTER</property>
+        <property name="valign">GTK_ALIGN_CENTER</property>
+        <property name="margin-top">20</property>
+        <property name="margin-bottom">20</property>
+        <property name="margin-start">20</property>
+        <property name="margin-end">20</property>
+
+        <!-- Primera fila de botones -->
+        <child>
+            <object class="GtkBox" id="row1_box">
+                <property name="orientation">0</property> <!-- Horizontal -->
+                <property name="spacing">10</property> <!-- Espaciado entre botones -->
+                
+                <child>
+                    <object class="GtkButton" id="mayus">
+                        <property name="label">Todo a Mayúsculas</property>
+                        <property name="width-request">300</property>
+                        <property name="height-request">50</property>
+                        <property name="hexpand">TRUE</property>
+                        <property name="vexpand">TRUE</property>
+                    </object>
+                </child>
+
+                <child>
+                    <object class="GtkButton" id="minus">
+                        <property name="label">Todo a Minúscula</property>
+                        <property name="width-request">300</property>
+                        <property name="height-request">50</property>
+                        <property name="hexpand">TRUE</property>
+                        <property name="vexpand">TRUE</property>
+                    </object>
+                </child>
+            </object>
+        </child>
+
+        <!-- Segunda fila de botones -->
+        <child>
+            <object class="GtkBox" id="row2_box">
+                <property name="orientation">0</property> <!-- Horizontal -->
+                <property name="spacing">10</property> <!-- Espaciado entre botones -->
+
+                <child>
+                    <object class="GtkButton" id="mayus_despues_punto">
+                        <property name="width-request">300</property>
+                        <property name="height-request">50</property>
+                        <property name="hexpand">TRUE</property>
+                        <property name="vexpand">TRUE</property>
+                        <child>
+                            <object class="GtkLabel">
+                                <property name="label">Mayúsculas después de punto</property>
+                                <property name="wrap">TRUE</property>
+                                <property name="justify">GTK_JUSTIFY_CENTER</property>
+                            </object>
+                        </child>
+                    </object>
+                </child>
+
+                <child>
+                    <object class="GtkButton" id="button4">
+                        <property name="label">Capitalizar texto</property>
+                        <property name="width-request">300</property>
+                        <property name="height-request">50</property>
+                        <property name="hexpand">TRUE</property>
+                        <property name="vexpand">TRUE</property>
+                    </object>
+                </child>
+            </object>
+        </child>
+
+        <!-- Tercera fila de botones -->
+        <child>
+            <object class="GtkBox" id="row3_box">
+                <property name="orientation">0</property> <!-- Horizontal -->
+                <property name="spacing">10</property> <!-- Espaciado entre botones -->
+
+                <child>
+                    <object class="GtkButton" id="copiar_texto">
+                        <property name="label">Copiar Texto</property>
+                        <property name="width-request">300</property>
+                        <property name="height-request">50</property>
+                        <property name="hexpand">TRUE</property>
+                        <property name="vexpand">TRUE</property>
+                  <style>
+                  <class name="suggested-action"/>
+                  </style>
+                    </object>
+                </child>
+            </object>
+        </child>
+    </object>
+
+
+      </child>
+    </object>
+</interface>

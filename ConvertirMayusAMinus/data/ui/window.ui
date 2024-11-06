@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <requires lib="gtk" version="4.0"/>
+  <object class="AdwWindow" id="window">
+    <property name="default-width">800</property>
+    <property name="default-height">800</property>
+    <property name="title" translatable="true">My App</property>
+    <property name="content">
+      <object class="AdwToolbarView">
+        <property name="top-bar-style">0</property>
+        <child type="top">
+          <object class="AdwHeaderBar">
+            <child type="end">
+              <object class="GtkMenuButton" id="button_menu">
+                <property name="menu-model">menu_app</property>
+                <property name="icon-name">open-menu-symbolic</property>
+                <property name="primary">true</property>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="AdwStatusPage" id="adwstatus">
+            <property name="title" translatable="true">Mayúsculas &amp; Minúsculas</property>
+            <property name="description" translatable="true">Es una sencilla y funcional aplicación web con la que podrás
+fácilmente convertir o pasar de &lt;b&gt;MAYÚSCULAS a minúsculas&lt;/b&gt;</property>
+            <property name="icon-name">preferences-desktop-keyboard</property>
+
+            </object>
+        </child>
+      </object>
+    </property>
+  </object>
+  <menu id="menu_app">
+    <section>
+      <item>
+        <attribute name="label" translatable="true">Keyboard Shortcuts</attribute>
+        <attribute name="action">app.shortcuts</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="true">About My App</attribute>
+        <attribute name="action">app.about</attribute>
+      </item>
+    </section>
+  </menu>
+</interface>
