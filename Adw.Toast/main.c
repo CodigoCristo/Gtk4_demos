@@ -15,7 +15,6 @@ activate_cb (GtkApplication *app)
   GtkWidget *toolbar_view = adw_toolbar_view_new ();
   GtkWidget *header_bar = adw_header_bar_new ();
   GtkWidget *button = gtk_button_new_with_label ("Mostrar Toast");
-
   GtkWidget *overlay = adw_toast_overlay_new ();
 
   // Configurar la ventana y su contenido

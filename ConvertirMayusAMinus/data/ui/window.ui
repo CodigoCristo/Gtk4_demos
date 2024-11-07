@@ -3,10 +3,10 @@
   <requires lib="gtk" version="4.0"/>
   <object class="AdwWindow" id="window">
     <property name="default-width">800</property>
-    <property name="default-height">800</property>
-    <property name="title" translatable="true">My App</property>
+    <property name="default-height">850</property>
+    <property name="title" translatable="true">Mayúsculas &amp; Minúsculas</property>
     <property name="content">
-      <object class="AdwToolbarView">
+      <object class="AdwToolbarView" id="toolbar_view">
         <property name="top-bar-style">0</property>
         <child type="top">
           <object class="AdwHeaderBar">
@@ -20,13 +20,18 @@
           </object>
         </child>
         <child>
+          <object class="AdwToastOverlay" id="overlay">
+          <child>
           <object class="AdwStatusPage" id="adwstatus">
             <property name="title" translatable="true">Mayúsculas &amp; Minúsculas</property>
-            <property name="description" translatable="true">Es una sencilla y funcional aplicación web con la que podrás
+            <property name="description" translatable="true">Es una sencilla y funcional aplicación escrita en &lt;b&gt;GTK4&lt;/b&gt; con la que podrás
 fácilmente convertir o pasar de &lt;b&gt;MAYÚSCULAS a minúsculas&lt;/b&gt;</property>
             <property name="icon-name">preferences-desktop-keyboard</property>
 
             </object>
+          </child>
+          </object>
+
         </child>
       </object>
     </property>

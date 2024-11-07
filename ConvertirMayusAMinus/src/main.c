@@ -89,6 +89,47 @@ void on_mayus_despues_punto_button_clicked(GtkButton *button, gpointer user_data
     g_string_free(result, TRUE);
 }
 
+
+// Función para capitalizar la primera letra de cada palabra
+void on_capi_text_clicked(GtkButton *button, gpointer user_data) {
+    GtkTextView *textview = GTK_TEXT_VIEW(user_data);
+    char *text = get_text_from_textview(textview);
+
+    // Convertir el texto a minúsculas
+    char *lowercase_text = g_utf8_strdown(text, -1);
+    GString *result = g_string_new(NULL);
+
+    gboolean capitalize_next = TRUE;
+
+    // Recorrer el texto y capitalizar la primera letra de cada palabra
+    for (char *p = lowercase_text; *p != '\0'; p = g_utf8_next_char(p)) {
+        gunichar ch = g_utf8_get_char(p);
+
+        // Capitalizar si es la primera letra de una palabra
+        if (capitalize_next && g_unichar_isalpha(ch)) {
+            ch = g_unichar_toupper(ch);
+            capitalize_next = FALSE;
+        }
+
+        // Agregar el carácter al resultado
+        g_string_append_unichar(result, ch);
+
+        // Detectar espacios o caracteres de separación para capitalizar la próxima letra
+        if (g_unichar_isspace(ch)) {
+            capitalize_next = TRUE;
+        }
+    }
+
+    // Establecer el texto modificado en el GtkTextView
+    set_text_in_textview(textview, result->str);
+
+    // Liberar la memoria utilizada
+    g_free(text);
+    g_free(lowercase_text);
+    g_string_free(result, TRUE);
+}
+
+
 // Función de callback para el botón "Copiar Texto"
 void on_copiar_texto_button_clicked(GtkButton *button, gpointer user_data) {
     GtkTextView *textview = GTK_TEXT_VIEW(user_data);
@@ -107,28 +148,49 @@ void on_copiar_texto_button_clicked(GtkButton *button, gpointer user_data) {
     g_free(text);
 }
 
+
+static void
+show_toast (AdwToastOverlay *overlay)
+{
+  AdwToast *toast = adw_toast_new ("Texto Copiado");
+  adw_toast_set_timeout (toast, 3); // Duración de 3 segundos
+  adw_toast_overlay_add_toast (overlay, toast);
+}
+
 static void activate(GtkApplication *app, gpointer user_data) {
     // Usa GtkBuilder para cargar la interfaz desde el recurso empaquetado
     GtkBuilder *builder = gtk_builder_new_from_resource("/org/gtk/Example/window.ui");
     GtkWidget *window = GTK_WIDGET(gtk_builder_get_object(builder, "window"));
+    //AdwToastOverlay
+    GtkWidget *toolbar_view = GTK_WIDGET(gtk_builder_get_object(builder, "toolbar_view"));
+    GtkWidget *overlay = GTK_WIDGET(gtk_builder_get_object(builder, "overlay"));
     GtkWidget *adwstatus = GTK_WIDGET(gtk_builder_get_object(builder, "adwstatus"));
+
     
     GtkBuilder *boxview = gtk_builder_new_from_resource("/org/gtk/Example/texview.ui");
     GtkWidget *box = GTK_WIDGET(gtk_builder_get_object(boxview, "box"));
+
+    //adw_toolbar_view_set_content (ADW_TOOLBAR_VIEW (toolbar_view), overlay);
+    //adw_toast_overlay_set_child (ADW_TOAST_OVERLAY (overlay), adwstatus);
     adw_status_page_set_child(ADW_STATUS_PAGE(adwstatus), box);
-    
+
+
     GtkTextView *textview = GTK_TEXT_VIEW(gtk_builder_get_object(boxview, "textview"));
     GtkTextBuffer *buffer = gtk_text_view_get_buffer(GTK_TEXT_VIEW(textview));
     GtkButton *button_mayus = GTK_BUTTON(gtk_builder_get_object(boxview, "mayus"));
     GtkButton *button_minus = GTK_BUTTON(gtk_builder_get_object(boxview, "minus"));
     GtkButton *button_mayus_despues_punto = GTK_BUTTON(gtk_builder_get_object(boxview, "mayus_despues_punto"));
+    GtkButton *capi_text = GTK_BUTTON(gtk_builder_get_object(boxview, "capi_text"));
     GtkButton *copiar_texto = GTK_BUTTON(gtk_builder_get_object(boxview, "copiar_texto"));
+    
 
     // Conectar las señales
     g_signal_connect(button_mayus, "clicked", G_CALLBACK(on_mayus_button_clicked), textview);
     g_signal_connect(button_minus, "clicked", G_CALLBACK(on_minus_button_clicked), textview);
     g_signal_connect(button_mayus_despues_punto, "clicked", G_CALLBACK(on_mayus_despues_punto_button_clicked), textview);
+    g_signal_connect(capi_text, "clicked", G_CALLBACK(on_capi_text_clicked), textview);
     g_signal_connect(copiar_texto, "clicked", G_CALLBACK(on_copiar_texto_button_clicked), textview);
+    g_signal_connect_swapped (copiar_texto, "clicked", G_CALLBACK (show_toast), overlay);
     
     gtk_window_set_application(GTK_WINDOW(window), app);
     gtk_window_present(GTK_WINDOW(window));
